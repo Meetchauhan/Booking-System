@@ -62,7 +62,7 @@ const RegisterPage = () => {
             value={values.name}
             onChange={handleChange}
             name="name"
-            autoComplete="name"
+            
           />
           <p className="text-red-600 text-xs min-h-5 mt-1">
             {touched.name && errors?.name ? errors?.name : ""}
@@ -83,7 +83,7 @@ const RegisterPage = () => {
             value={values.email}
             onChange={handleChange}
             name="email"
-            autoComplete="email"
+            
           />
           <p className="text-red-600 text-xs min-h-5 mt-1">
             {touched.email && errors?.email ? errors?.email : ""}
@@ -104,7 +104,7 @@ const RegisterPage = () => {
             value={values.password}
             onChange={handleChange}
             name="password"
-            autoComplete="current-password"
+            
           />
           <p className="text-red-600 text-xs min-h-5 mt-1">
             {touched.password && errors?.password ? errors?.password : ""}

@@ -61,7 +61,7 @@ const LoginPage = () => {
             value={values.email}
             onChange={handleChange}
             name="email"
-            autoComplete="email"
+            
           />
           <p className="text-red-600 text-xs min-h-5 mt-1">
             {touched.email && errors?.email ? errors?.email : ""}
@@ -82,7 +82,7 @@ const LoginPage = () => {
             value={values.password}
             onChange={handleChange}
             name="password"
-            autoComplete="current-password"
+            
           />
           <p className="text-red-600 text-xs min-h-5 mt-1">
             {touched.password && errors?.password ? errors?.password : ""}
