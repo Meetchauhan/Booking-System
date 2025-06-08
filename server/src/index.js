@@ -1,7 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-// import mongoose from 'mongoose';
 import { connectDB } from './config/db.js';
 
 import authRoutes from '../src/routers/authRoutes.js';
@@ -22,7 +21,7 @@ app.use("/api/booking", bookingRoutes);
 app.use("/api/public", publicRoutes);
 
 const PORT = process.env.PORT || 5000;
-// mongoose.connect(process.env.MONGO_URI)
+
 
 app.listen(PORT, async () => {
     connectDB()

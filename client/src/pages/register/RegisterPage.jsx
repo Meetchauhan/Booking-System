@@ -22,11 +22,7 @@ const RegisterPage = () => {
     initialValues: initialValue,
     validationSchema: RegisterSchema,
     onSubmit: async (value, action) => {
-      console.log("Form values:", value);
-
       const res = await dispatch(registerUser(value));
-
-      console.log("Login response:", res);
 
       if (res?.payload === true) {
         navigate("/login");

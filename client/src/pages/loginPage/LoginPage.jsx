@@ -13,7 +13,6 @@ const LoginPage = () => {
   const { loading, error } = useSelector((state) => state.auth);
 
   const initialValue = {
-    // name: "",
     email: "",
     password: "",
   };
@@ -22,11 +21,7 @@ const LoginPage = () => {
     initialValues: initialValue,
     validationSchema: LoginSchema,
     onSubmit: async (value, action) => {
-      console.log("Form values:", value);
-
       const res = await dispatch(loginUser(value));
-
-      console.log("Login response:", res);
 
       if (res?.payload?.success === true) {
         navigate("/dashboard");

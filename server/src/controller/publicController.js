@@ -1,7 +1,7 @@
 import Availability from "../models/Availability.js";
 import Booking from "../models/Booking.js";
 
-// Get all available dates for a given linkId
+
 export const getAvailableDates = async (req, res) => {
     try {
         const { linkId } = req.params;
@@ -16,7 +16,7 @@ export const getAvailableDates = async (req, res) => {
     }
 };
 
-// Get available slots for a given date by excluding already booked times
+
 export const getAvailableSlotsByDate = async (req, res) => {
     try {
         const { linkId, date } = req.params;
@@ -26,7 +26,7 @@ export const getAvailableSlotsByDate = async (req, res) => {
 
         const { startTime, endTime } = availability;
 
-        // Convert to 30-minute slots (you can customize this)
+
         const generateTimeSlots = (start, end) => {
             const slots = [];
             let [h, m] = start.split(":").map(Number);
@@ -46,7 +46,7 @@ export const getAvailableSlotsByDate = async (req, res) => {
 
         const allSlots = generateTimeSlots(startTime, endTime);
 
-        // Get booked times
+
         const booked = await Booking.find({ linkId, date });
         const bookedTimes = booked.map((b) => b.time);
 

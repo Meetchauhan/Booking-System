@@ -13,13 +13,11 @@ export const register = async (req, res) => {
         if (userExits) {
             return res.status(400).json({ success: false, error: "Email already exists" });
         }
-        console.log("registering user", { name, email, password });
 
         const hash = await bcrypt.hash(password, 10);
         const user = new User({ name, email, password: hash });
         const regiseredUser = await user.save();
 
-        console.log("User registered successfully", regiseredUser);
         return res.status(201).json({ success: true, message: "User registered" });
     } catch (err) {
         return res.status(400).json({ success: false, error: "Error in register User" });

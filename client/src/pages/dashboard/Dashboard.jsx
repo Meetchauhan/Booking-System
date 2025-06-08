@@ -41,25 +41,10 @@ const Dashboard = () => {
     }
   };
 
-  //   const handleGenerateLink = async () => {
-  //     try {
-  //       const res = await axios.post(
-  //         "http://localhost:5000/api/booking-links/generate",
-  //         {},
-  //         { headers: { Authorization: `Bearer ${token}` } }
-  //       );
-  //       setBookingLink(`http://localhost:3000/book/${res.data.linkId}`);
-  //     } catch (err) {
-  //       console.error("Failed to generate link:", err);
-  //     }
-  //   };
-
   const handleLogout = () => {
     dispatch(logout());
     navigate("/login", { replace: true });
   };
-  console.log("availability", availability);
-  console.log("bookingLink", bookingLink);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 to-blue-300 flex flex-col items-center py-8 px-2">
