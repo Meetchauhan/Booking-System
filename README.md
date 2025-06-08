@@ -57,11 +57,13 @@ npm install
   PORT=5000
   ```
 
+# env data shared in email
+
 #### 4. Start the backend server
 
 ```sh
 cd server
-npm start
+npm run dev
 ```
 
 #### 5. Start the frontend (React) app
