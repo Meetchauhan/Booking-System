@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../features/auth/authSlice";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,8 +5,7 @@ import { useFormik } from "formik";
 import { LoginSchema } from "../../validationSchemas/LoginSchema";
 
 const LoginPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+ 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { loading, error } = useSelector((state) => state.auth);
@@ -26,6 +24,7 @@ const LoginPage = () => {
       if (res?.payload?.success === true) {
         navigate("/dashboard");
       }
+      action.resetForm();
     },
   });
 

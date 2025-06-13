@@ -1,4 +1,3 @@
-// src/pages/Dashboard.js
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -12,7 +11,6 @@ const Dashboard = () => {
   const [date, setDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
-  const [bookingLink, setBookingLink] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -90,6 +88,7 @@ const Dashboard = () => {
               value={endTime}
               onChange={(e) => setEndTime(e.target.value)}
               disabled={!date}
+              min={startTime} // Dynamically set the minimum time
             />
             <button
               type="submit"
@@ -119,6 +118,8 @@ const Dashboard = () => {
                   : item?.availability?.date;
               } catch (e) {
                 formattedDate = item?.date || "Invalid date";
+                console.error("Error formatting date:", e);
+                
               }
               return (
                 <li

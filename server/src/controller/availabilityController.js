@@ -4,6 +4,19 @@ import { v4 as uuidv4 } from 'uuid';
 export const saveAvailability = async (req, res) => {
     try {
         const { date, startTime, endTime } = req.body;
+
+        // Check if availability already exists for the same user, date, startTime, and endTime
+        const existingAvailability = await Availability.findOne({
+            userId: req.user.userId,
+            date,
+            startTime,
+            endTime
+        });
+
+        if (existingAvailability) {
+            return res.status(400).json({ error: "Availability already exists for the given date, start time, and end time." });
+        }
+
         const linkId = uuidv4();
         const availability = new Availability({
             userId: req.user.userId,
@@ -12,6 +25,7 @@ export const saveAvailability = async (req, res) => {
             endTime,
             linkId
         });
+
         await availability.save();
         return res.status(200).json({ availability });
     } catch (err) {

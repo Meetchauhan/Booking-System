@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../features/auth/authSlice";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,8 +6,7 @@ import { useFormik } from "formik";
 import { RegisterSchema } from "../../validationSchemas/LoginSchema";
 
 const RegisterPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { loading, error } = useSelector((state) => state.auth);
@@ -27,6 +26,7 @@ const RegisterPage = () => {
       if (res?.payload === true) {
         navigate("/login");
       }
+      action.resetForm();
     },
   });
 
