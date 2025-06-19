@@ -16,6 +16,9 @@ const Dashboard = () => {
 
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const API = API_BASE_URL ?? "http://localhost:5000/api";
+  const PRODUCTION_URL = import.meta.env.VITE_BASE_URL
+  const BASE_URL = PRODUCTION_URL ?? "http://localhost:5173"
+
 
   const handleAddAvailability = async () => {
     if (!date || !startTime || !endTime) return;
@@ -138,7 +141,7 @@ const Dashboard = () => {
                   </span>
                   {item?.availability?.linkId && (
                     <Link
-                      to={`http://localhost:5173/book/${item.availability.linkId}`}
+                      to={`${BASE_URL}/book/${item.availability.linkId}`}
                       className="text-green-600 underline font-semibold hover:text-green-800 transition text-base md:text-lg"
                       rel="noopener noreferrer"
                     >
