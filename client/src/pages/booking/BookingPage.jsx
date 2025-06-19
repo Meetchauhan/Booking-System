@@ -11,9 +11,12 @@ const BookingPage = () => {
   const [selectedSlot, setSelectedSlot] = useState("");
   const [message, setMessage] = useState("");
 
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+  const API = API_BASE_URL ?? "http://localhost:5000/api";
+
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/public/${linkId}`)
+      .get(`${API}/public/${linkId}`)
       .then((res) => {
         setDates(res.data.map((slot) => slot.date));
         if (res.data.length) {
@@ -21,22 +24,22 @@ const BookingPage = () => {
         }
       })
       .catch(() => setMessage("404 - Invalid booking link"));
-  }, [linkId]);
+  }, [linkId, API]);
 
   useEffect(() => {
     if (selectedDate) {
       axios
-        .get(`http://localhost:5000/api/public/${linkId}/${selectedDate}`)
+        .get(`${API}/public/${linkId}/${selectedDate}`)
         .then((res) => setAvailableSlots(res.data))
         .catch(() => setAvailableSlots([]));
     }
-  }, [selectedDate, linkId]);
+  }, [selectedDate, linkId, API]);
 
   const handleBooking = () => {
     if (!selectedSlot) return;
 
     axios
-      .post(`http://localhost:5000/api/booking/create`, {
+      .post(`${API}/booking/create`, {
         linkId,
         date: selectedDate,
         time: selectedSlot,

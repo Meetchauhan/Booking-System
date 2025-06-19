@@ -14,6 +14,9 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+  const API = API_BASE_URL ?? "http://localhost:5000/api";
+
   const handleAddAvailability = async () => {
     if (!date || !startTime || !endTime) return;
 
@@ -25,7 +28,7 @@ const Dashboard = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/availability/save",
+        `${API}/availability/save`,
         payload,
         { headers: { Authorization: `Bearer ${token}` } }
       );
